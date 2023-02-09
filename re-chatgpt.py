@@ -2,7 +2,7 @@ import requests
 
 def chat_with_gpt3(message):
     # 设置OpenAI的API密钥
-    API_KEY = "你的API密钥"
+    API_KEY = "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"
 
     # 设置OpenAI API的端点
     endpoint = "https://api.openai.com/v1/engines/davinci/jobs"
@@ -26,6 +26,8 @@ def chat_with_gpt3(message):
 
     # 检查响应的状态码
     if response.status_code != 200:
+        response_text = response.json()["choices"][0]["text"]
+        print(response_text)
         raise Exception("无法向OpenAI API发送请求")
 
     # 提取响应文本
@@ -36,5 +38,5 @@ def chat_with_gpt3(message):
     print(response_text)
 
 # 示例用法
-chat_with_gpt3("你好，今天怎么样？")
+chat_with_gpt3("python写一个飞书交互机器人")
 
